@@ -1,0 +1,23 @@
+{
+  "name": "menu-perfiles_",
+  "version": "1.0.0",
+  "description": "Menú de navegación para páginas administrativas que se arma de acuerdo al perfil de usuarios registrados.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmagrosoto/menu-perfiles.git"
+  },
+  "keywords": [
+    "fmagrosoto",
+    "digitae"
+  ],
+  "author": "Fernando Magrosoto V.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fmagrosoto/menu-perfiles/issues"
+  },
+  "homepage": "https://github.com/fmagrosoto/menu-perfiles#readme"
+}

@@ -1,7 +1,6 @@
 /**
 * JSON de los perfiles
-* Solo como pero recordatorio de cómo pudiera ser un perfil de roles.
-* Se muestra para fines demostartivos.
+* Solo como para ejemplificar una posible lista de perfil de roles.
 */
 var perfiles = [
   {
@@ -23,40 +22,55 @@ var perfiles = [
 ];
 
 
+// Nombre de página.
+// Esta variable podría estar declarada en cada página del sitio.
+// Luego, la inyectamos en la función anónima.
+var pa = process.argv[2];
+
+
 /**
  * Función tipo Clousure para reemplazar acentos, mayúsculas y espacios en una cadena de texto.
- * Muy parecido a un permalink - OJO, puede hacer permalink con solo reemplazar
- * el espacio con un guión:
+ * Muy parecido a un generador de permalink.
+ * OJO, puede usarse como generador de permalink con solo reemplazar el espacio con un guión:
  * return ret.join( '' ).replace( /[^-A-Za-z0-9]+/g, '-' ).toLowerCase();
  * @author Fernando Magrosoto
  */
 var normalize = (function() {
+  
   var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
       to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
       mapping = {};
 
   for(var i = 0, j = from.length; i < j; i++ )
     mapping[ from.charAt( i ) ] = to.charAt( i );
+
   return function( str ) {
     var ret = [];
+
     for( var i = 0, j = str.length; i < j; i++ ) {
       var c = str.charAt( i );
+
       if( mapping.hasOwnProperty( str.charAt( i ) ) )
         ret.push( mapping[ c ] );
       else
         ret.push( c );
+
     }
+
     return ret.join( '' ).replace( /[^-A-Za-z0-9]+/g, '' ).toLowerCase();
-  }
+    // Es lo mismo  que: return ret.join( '' ).replace( /\s/g, '' ).toLowerCase();
+
+  };
+
 })();
 
 
 /**
  * Función anónima donde se auto ejecuta el algortmo y eviatar que sea reutilizable
  */
-(function (){
+(function (pa){
 
-  var pa = process.argv[2];
+  // ID del perfil  
   var pe = process.argv[3];
 
   var menu = {
@@ -66,7 +80,8 @@ var normalize = (function() {
     'clientes':{'nombre':'Clientes','url':'clientes.html','acceso':[1,2,3]},
     'facturacion':{'nombre':'Facturación','url':'facturacion.html','acceso':[1,3]},
     'usuarios':{'nombre':'Usuarios','url':'usuarios.html','acceso':[1]},
-    'micuenta':{'nombre':'Mi cuenta','url':'miCuenta.html','acceso':[1,2,3,4]}
+    'micuenta':{'nombre':'Mi cuenta','url':'miCuenta.html','acceso':[1,2,3,4]},
+    'comun':{'acceso':[1,2,3,4]}
   };
 
   var nMenu = [];
@@ -89,8 +104,9 @@ var normalize = (function() {
         }
       }
 
+      console.log('\033[2J');
       console.log('\n----------\n');
-      for(var x = 0; x < nMenu.length; x++) {
+      for(var x = 0; x < nMenu.length - 1; x++) {
         var activado = (normalize(nMenu[x].nombre) === pa) ? ' > activado' : '';
         console.log('> ' + nMenu[x].url + activado);
       }
@@ -104,4 +120,4 @@ var normalize = (function() {
   }
 
 
-})();
+})(pa);
