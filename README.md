@@ -10,4 +10,6 @@ Además restringe el acceso a páginas con un nivel de usuario diferente al perf
 
 ## Autor
 [Fernando Magrosoto V.](https://twitter.com/fmagrosoto)
-Desarrollador de apicaciones web y sistemas de administració en la nube.
+Desarrollador de apicaciones web y sistemas de administración en la nube.
+
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/fmagrosoto)
